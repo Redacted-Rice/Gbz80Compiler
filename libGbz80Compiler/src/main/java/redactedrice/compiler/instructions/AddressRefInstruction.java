@@ -17,7 +17,7 @@ public abstract class AddressRefInstruction implements Instruction {
     }
 
     @Override
-    public boolean containsPlaceholder() {
+    public boolean containsOnlySubsegmentPartOfLabel() {
         return SegmentNamingUtils.isOnlySubsegmentPartOfLabel(label);
     }
 

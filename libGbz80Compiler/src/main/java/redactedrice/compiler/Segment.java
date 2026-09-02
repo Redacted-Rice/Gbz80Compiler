@@ -24,7 +24,7 @@ public class Segment {
 
     public void appendInstruction(Instruction instruct) {
         data.add(instruct);
-        if (instruct.containsPlaceholder()) {
+        if (instruct.containsOnlySubsegmentPartOfLabel()) {
             placeholderInstructs.add(instruct);
         }
     }

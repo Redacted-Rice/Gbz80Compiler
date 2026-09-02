@@ -9,7 +9,7 @@ import redactedrice.gbcframework.addressing.AssignedAddresses;
 import redactedrice.gbcframework.addressing.BankAddress;
 
 public interface Instruction {
-    public abstract boolean containsPlaceholder();
+    public abstract boolean containsOnlySubsegmentPartOfLabel();
 
     public abstract void replacePlaceholderIfPresent(Map<String, String> placeholderToArgs);
 

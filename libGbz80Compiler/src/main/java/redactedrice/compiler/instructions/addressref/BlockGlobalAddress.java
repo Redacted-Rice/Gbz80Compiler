@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import redactedrice.compiler.instructions.AddressRefInstruction;
 import redactedrice.gbcframework.QueuedWriter;
+import redactedrice.gbcframework.SegmentNamingUtils;
 import redactedrice.gbcframework.addressing.AssignedAddresses;
 import redactedrice.gbcframework.addressing.BankAddress;
 import redactedrice.gbcframework.utils.ByteUtils;
@@ -15,8 +16,7 @@ public class BlockGlobalAddress extends AddressRefInstruction {
     int offset;
 
     public BlockGlobalAddress(String addressLabel, int offset) {
-        // TODO now: Check if only subsegment portion of address
-        super(addressLabel);
+        super(SegmentNamingUtils.requireFullyQualifiedLabel(addressLabel, "BlockGlobalAddress"));
         this.offset = offset;
     }
 
