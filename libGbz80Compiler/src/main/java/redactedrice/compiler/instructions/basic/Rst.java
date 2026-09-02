@@ -22,7 +22,7 @@ public class Rst extends BasicInstruction {
         if (val < 8) {
             val *= 8;
         } else if (val % 8 != 0) {
-            // TODO: Error!
+            // TODO now: Error!
             return 0;
         }
         return val;

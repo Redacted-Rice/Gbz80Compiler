@@ -15,7 +15,7 @@ public class BlockGlobalAddress extends AddressRefInstruction {
     int offset;
 
     public BlockGlobalAddress(String addressLabel, int offset) {
-        // TODO: Check if only subsegment portion of address
+        // TODO now: Check if only subsegment portion of address
         super(addressLabel);
         this.offset = offset;
     }
