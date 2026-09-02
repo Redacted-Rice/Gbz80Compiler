@@ -14,7 +14,7 @@ public abstract class BasicInstruction extends FixedLengthInstruction {
     }
 
     @Override
-    public boolean containsPlaceholder() {
+    public boolean containsOnlySubsegmentPartOfLabel() {
         return false;
     }
 

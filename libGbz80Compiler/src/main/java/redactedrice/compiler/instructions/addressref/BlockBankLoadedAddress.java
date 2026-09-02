@@ -5,6 +5,7 @@ import java.io.IOException;
 
 import redactedrice.compiler.instructions.AddressRefInstruction;
 import redactedrice.gbcframework.QueuedWriter;
+import redactedrice.gbcframework.SegmentNamingUtils;
 import redactedrice.gbcframework.addressing.AssignedAddresses;
 import redactedrice.gbcframework.addressing.BankAddress;
 import redactedrice.gbcframework.utils.ByteUtils;
@@ -15,7 +16,8 @@ public class BlockBankLoadedAddress extends AddressRefInstruction {
     public static final int SIZE = 2;
 
     public BlockBankLoadedAddress(String addressLabel, boolean includeBank) {
-        super(addressLabel);
+        super(SegmentNamingUtils.requireFullyQualifiedLabel(addressLabel,
+                "BlockBankLoadedAddress"));
         this.includeBank = includeBank;
     }
 

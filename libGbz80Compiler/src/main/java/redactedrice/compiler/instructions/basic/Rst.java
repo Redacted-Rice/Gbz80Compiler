@@ -13,17 +13,21 @@ public class Rst extends BasicInstruction {
 
     public Rst(byte rstVal) {
         super(1);
-        this.rstVal = rstVal;
+        this.rstVal = convertToRstVal(rstVal);
     }
 
     protected static byte convertToRstVal(byte rst) {
+        if (rst < 0) {
+            throw new IllegalArgumentException(
+                    "rst value must be a multiple of 8 or an index from 0 to 7: " + rst);
+        }
         byte val = rst;
         // If its an index instead of the actual value, convert it
         if (val < 8) {
             val *= 8;
         } else if (val % 8 != 0) {
-            // TODO now: Error!
-            return 0;
+            throw new IllegalArgumentException(
+                    "rst value must be a multiple of 8 or an index from 0 to 7: " + rst);
         }
         return val;
     }
