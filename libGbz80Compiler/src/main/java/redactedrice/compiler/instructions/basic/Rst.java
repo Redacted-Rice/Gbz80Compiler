@@ -9,6 +9,8 @@ import redactedrice.compiler.instructions.BasicInstruction;
 import redactedrice.gbcframework.QueuedWriter;
 
 public class Rst extends BasicInstruction {
+    private static final byte MAX_RST_OFFSET = 0x38;
+
     protected byte rstVal;
 
     public Rst(byte rstVal) {
@@ -29,6 +31,10 @@ public class Rst extends BasicInstruction {
             throw new IllegalArgumentException(
                     "rst value must be a multiple of 8 or an index from 0 to 7: " + rst);
         }
+        if (val > MAX_RST_OFFSET) {
+            throw new IllegalArgumentException(
+                    "rst value must be a multiple of 8 or an index from 0 to 7: " + rst);
+        }
         return val;
     }
 
@@ -38,13 +44,7 @@ public class Rst extends BasicInstruction {
             throw new IllegalArgumentException(SUPPORT_STRING + Arrays.toString(args));
         }
 
-        try {
-            return new Rst(CompilerUtils.parseByteArg(args[0]));
-        } catch (IllegalArgumentException iae) {
-            // The instruct doesn't fit - try the next one
-        }
-
-        throw new IllegalArgumentException(SUPPORT_STRING + Arrays.toString(args));
+        return new Rst(CompilerUtils.parseByteArg(args[0]));
     }
 
     @Override

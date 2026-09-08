@@ -15,17 +15,17 @@ import redactedrice.gbcframework.addressing.BankAddress.BankAddressLimitType;
 
 public class Segment {
     List<Instruction> data;
-    List<Instruction> placeholderInstructs;
+    List<Instruction> subsegmentRelativeInstructs;
 
     public Segment() {
         data = new LinkedList<>();
-        placeholderInstructs = new LinkedList<>();
+        subsegmentRelativeInstructs = new LinkedList<>();
     }
 
     public void appendInstruction(Instruction instruct) {
         data.add(instruct);
         if (instruct.containsOnlySubsegmentPartOfLabel()) {
-            placeholderInstructs.add(instruct);
+            subsegmentRelativeInstructs.add(instruct);
         }
     }
 
@@ -70,7 +70,7 @@ public class Segment {
     }
 
     public void replacePlaceholders(Map<String, String> placeholderToArgs) {
-        for (Instruction instruct : placeholderInstructs) {
+        for (Instruction instruct : subsegmentRelativeInstructs) {
             instruct.replacePlaceholderIfPresent(placeholderToArgs);
         }
     }
